@@ -1,2 +1,3 @@
-# ForecaWeatherFX
- Powered by Foreca API
+# ForecaWeatherJavaFX
+
+Java FX aplication powered by Foreca API 
