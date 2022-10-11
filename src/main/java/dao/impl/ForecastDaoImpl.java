@@ -36,8 +36,8 @@ public class ForecastDaoImpl implements ForecastDao {
                 .map(r -> Either.right(r.getForecast()).mapLeft(Object::toString))
                 .subscribeOn(Schedulers.io())
                 .onErrorReturn(throwable -> {
-                    Either<String, List<ForecastDailyItem>> error = Either.left("Error de comunicacion");
-                    if (throwable instanceof HttpException httpException  ){
+                    Either<String, List<ForecastDailyItem>> error = Either.left(Constantes.ERROR_DE_COMUNICACION);
+                    if (throwable instanceof HttpException httpException) {
                         try (ResponseBody ignored = Objects.requireNonNull(httpException.response()).errorBody()) {
                             error = Either.left(httpException.response().message());
                         }

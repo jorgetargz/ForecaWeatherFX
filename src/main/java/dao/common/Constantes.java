@@ -3,13 +3,14 @@ package dao.common;
 public class Constantes {
 
     public static final String PERIOD = "period";
+    public static final String ERROR_DE_COMUNICACION = "Error de comunicacion";
 
     private Constantes() {
     }
 
     public static final String LOCATION_SEARCH_ENDPOINT = "/location/search/{location}";
-    public static final String FORECAST_HOURLY_ENDPOINT = "/forecast/{period}/{location_id}";
-    public static final String FORECAST_DAYLY_ENDPOINT = "/forecast/daily/{location_id}";
+    public static final String FORECAST_HOURLY_ENDPOINT = "/forecast/{period}/{location_id}?alt=0&tempunit=C&windunit=MS&periods=8&dataset=full&history=1";
+    public static final String FORECAST_DAYLY_ENDPOINT = "/forecast/daily/{location_id}?alt=0&tempunit=C&windunit=MS&periods=8&dataset=full";
 
     public static final String LOCATION = "location";
     public static final String LANG = "lang";

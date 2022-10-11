@@ -23,7 +23,7 @@ public class ForecastHourlyItem {
     private int cloudiness;
     private double pressure;
     private double dewPoint;
-    private int thunderProb;
+    private double thunderProb;
     private double snowAccum;
     private double precipAccum;
     private String windDirString;
@@ -38,7 +38,7 @@ public class ForecastHourlyItem {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return Constantes.TIME + getTime() + Constantes.SALTO_LINEA +
                 Constantes.TEMPERATURE + temperature + Constantes.SALTO_LINEA +
                 Constantes.FEELS_LIKE + feelsLikeTemp + Constantes.SALTO_LINEA +

@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.pantallas.hourly.PantallaHourlyController">
-    <Label fx:id="lbBienvenido" layoutX="149.0" layoutY="89.0" prefHeight="66.0" prefWidth="682.0" styleClass="titleLocation" />
+<AnchorPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.pantallas.hourly.PantallaHourlyController">
+    <Label fx:id="lbBienvenido" layoutX="149.0" layoutY="89.0" prefHeight="66.0" prefWidth="682.0"
+           styleClass="titleLocation"/>
     <TableView fx:id="tableForecastHourly" layoutX="124.0" layoutY="181.0" prefHeight="338.0" prefWidth="720.0">
         <columns>
-            <TableColumn fx:id="columnTime" prefWidth="128.800048828125" text="%Hora" />
-            <TableColumn fx:id="columTemp" prefWidth="119.99993896484375" text="%Temp" />
-            <TableColumn fx:id="columnFeelTemp" prefWidth="143.99993896484375" text="%Sensacion" />
-            <TableColumn fx:id="columnProbPre" prefWidth="131.99993896484375" text="%ProbLluvia" />
-            <TableColumn fx:id="columnVelViento" prefWidth="180.800048828125" text="%VelViento" />
+            <TableColumn fx:id="columnTime" prefWidth="128.800048828125" text="%Hora"/>
+            <TableColumn fx:id="columTemp" prefWidth="119.99993896484375" text="%Temp"/>
+            <TableColumn fx:id="columnFeelTemp" prefWidth="143.99993896484375" text="%Sensacion"/>
+            <TableColumn fx:id="columnProbPre" prefWidth="131.99993896484375" text="%ProbLluvia"/>
+            <TableColumn fx:id="columnVelViento" prefWidth="180.800048828125" text="%VelViento"/>
         </columns>
     </TableView>
-    <ImageView fx:id="imgLogo" fitHeight="150.0" fitWidth="200.0" layoutX="30.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-    <MFXButton layoutX="449.0" layoutY="553.0" onAction="#onGoBack" prefHeight="45.0" prefWidth="82.0" text="Atrás" />
-   <MFXButton layoutX="855.0" layoutY="327.0" onAction="#onShowDetail" prefHeight="45.0" prefWidth="82.0" text="Detalle" />
+    <ImageView fx:id="imgLogo" fitHeight="150.0" fitWidth="200.0" layoutX="30.0" layoutY="14.0" pickOnBounds="true"
+               preserveRatio="true"/>
+    <MFXButton layoutX="449.0" layoutY="553.0" onAction="#onGoBack" prefHeight="45.0" prefWidth="82.0" text="Atrás"/>
+    <MFXButton layoutX="855.0" layoutY="327.0" onAction="#onShowDetail" prefHeight="45.0" prefWidth="82.0"
+               text="Detalle"/>
 </AnchorPane>

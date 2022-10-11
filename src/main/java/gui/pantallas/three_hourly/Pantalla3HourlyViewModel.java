@@ -21,7 +21,7 @@ public class Pantalla3HourlyViewModel {
     @Inject
     public Pantalla3HourlyViewModel(ServiceForecast scForecast) {
         this.scForecast = scForecast;
-        state = new SimpleObjectProperty<>(new Pantalla3HourlyState(null, false,false));
+        state = new SimpleObjectProperty<>(new Pantalla3HourlyState(null, false, false));
         observableForecast = FXCollections.observableArrayList();
     }
 
@@ -43,7 +43,7 @@ public class Pantalla3HourlyViewModel {
     }
 
     public void clearState() {
-        state.set(new Pantalla3HourlyState(null, false,false));
+        state.set(new Pantalla3HourlyState(null, false, false));
     }
 
     public void onGoBack() {
@@ -52,9 +52,10 @@ public class Pantalla3HourlyViewModel {
 
     public void showHourlyDetail(ForecastHourlyItem forecastHourlyItem) {
         if (forecastHourlyItem != null) {
+            state.set(new Pantalla3HourlyState(null, false, true));
+        } else {
             state.set(new Pantalla3HourlyState(ConstantesPantallas.SELECCIONA_UN_REGISTRO_PRIMERO, false, false));
         }
-        state.set(new Pantalla3HourlyState(null, false, true));
     }
 }
 

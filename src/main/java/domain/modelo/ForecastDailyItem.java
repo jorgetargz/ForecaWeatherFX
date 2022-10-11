@@ -12,7 +12,6 @@ public class ForecastDailyItem {
     private int maxTemp;
     private int minTemp;
     private int maxWindSpeed;
-
     private double precipProb;
     private String sunrise;
     private String sunset;

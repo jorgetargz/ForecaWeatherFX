@@ -5,7 +5,6 @@ import domain.modelo.LocationItem;
 import gui.pantallas.common.BasePantallaController;
 import gui.pantallas.common.ConstantesPantallas;
 import jakarta.inject.Inject;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
@@ -96,7 +95,7 @@ public class PantallaDailyController extends BasePantallaController {
     @FXML
     private void onShowDetail() {
         ForecastDailyItem forecastDailyItem = tableForecastDaily.getSelectionModel().getSelectedItem();
-            dailyViewModel.onShowDetail(forecastDailyItem);
+        dailyViewModel.onShowDetail(forecastDailyItem);
         dailyViewModel.clearState();
     }
 }

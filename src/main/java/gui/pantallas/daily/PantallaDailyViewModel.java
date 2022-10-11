@@ -21,7 +21,7 @@ public class PantallaDailyViewModel {
     @Inject
     public PantallaDailyViewModel(ServiceForecast scForecast) {
         this.scForecast = scForecast;
-        state = new SimpleObjectProperty<>(new PantallaDailyState(null, false,false,false, false));
+        state = new SimpleObjectProperty<>(new PantallaDailyState(null, false, false, false, false));
         observableForecast = FXCollections.observableArrayList();
     }
 
@@ -39,21 +39,21 @@ public class PantallaDailyViewModel {
                 .observeOn(Schedulers.single())
                 .subscribe(either -> {
                     if (either.isLeft())
-                        state.set(new PantallaDailyState(either.getLeft(), false,false,true, false));
+                        state.set(new PantallaDailyState(either.getLeft(), false, false, true, false));
                     else {
                         observableForecast.clear();
                         observableForecast.setAll(either.get());
-                        state.set(new PantallaDailyState(null, false,false,true, false));
+                        state.set(new PantallaDailyState(null, false, false, true, false));
                     }
                 });
     }
 
     public void onGoBack() {
-        state.set(new PantallaDailyState(null, true,false,false, false));
+        state.set(new PantallaDailyState(null, true, false, false, false));
     }
 
     public void clearState() {
-        state.set(new PantallaDailyState(null, false,false,false, false));
+        state.set(new PantallaDailyState(null, false, false, false, false));
     }
 
     public void onShowDetail(ForecastDailyItem forecastDailyItem) {

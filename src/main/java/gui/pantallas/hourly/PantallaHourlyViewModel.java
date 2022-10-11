@@ -49,9 +49,10 @@ public class PantallaHourlyViewModel {
 
     public void showHourlyDetail(ForecastHourlyItem forecastHourlyItem) {
         if (forecastHourlyItem != null) {
+            state.set(new PantallaHourlyState(null, false, true));
+        } else {
             state.set(new PantallaHourlyState(ConstantesPantallas.SELECCIONA_UN_REGISTRO_PRIMERO, false, false));
         }
-        state.set(new PantallaHourlyState(null, false, true));
     }
 
     public void onGoBack() {

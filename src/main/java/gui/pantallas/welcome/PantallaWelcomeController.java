@@ -8,7 +8,6 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
@@ -18,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
