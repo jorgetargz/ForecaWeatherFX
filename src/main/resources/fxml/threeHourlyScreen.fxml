@@ -20,4 +20,5 @@
     <ImageView fx:id="imgLogo" fitHeight="150.0" fitWidth="200.0" layoutX="30.0" layoutY="14.0" pickOnBounds="true"
                preserveRatio="true"/>
     <MFXButton layoutX="449.0" layoutY="553.0" onAction="#onGoBack" prefHeight="45.0" prefWidth="82.0" text="%Atras"/>
+    <MFXButton layoutX="855.0" layoutY="327.0" onAction="#onShowDetail" prefHeight="45.0" prefWidth="82.0" text="Detalle" />
 </AnchorPane>

@@ -9,6 +9,7 @@ import jakarta.inject.Singleton;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.time.LocalDate;
@@ -47,6 +48,7 @@ public class ProducerForecaAPI {
         return new Retrofit.Builder()
                 .baseUrl(configForecaAPI.getBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(clientOK)
                 .build();
     }

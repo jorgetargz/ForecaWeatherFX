@@ -8,6 +8,9 @@ module ForecaWeather {
     requires javafx.controls;
     requires javafx.fxml;
     requires MaterialFX;
+    requires io.reactivex.rxjava3;
+    requires org.pdfsam.rxjavafx;
+    requires retrofit2.adapter.rxjava3;
 
     requires lombok;
     requires org.apache.logging.log4j;

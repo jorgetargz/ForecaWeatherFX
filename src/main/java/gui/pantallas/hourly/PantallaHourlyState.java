@@ -1,6 +1,6 @@
 package gui.pantallas.hourly;
 
 
-public record PantallaHourlyState(String error, boolean onGoBack) {
+public record PantallaHourlyState(String error, boolean onGoBack, boolean onShowDetail) {
 }
 

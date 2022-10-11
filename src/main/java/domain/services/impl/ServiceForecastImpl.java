@@ -4,6 +4,7 @@ import dao.ForecastDao;
 import domain.modelo.ForecastDailyItem;
 import domain.modelo.ForecastHourlyItem;
 import domain.services.ServiceForecast;
+import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 
@@ -19,7 +20,7 @@ public class ServiceForecastImpl implements ServiceForecast {
     }
 
     @Override
-    public Either<String, List<ForecastDailyItem>> getDailyForecast(int id) {
+    public Single<Either<String, List<ForecastDailyItem>>> getDailyForecast(int id) {
         return daoForecast.getDailyForecast(id);
     }
 

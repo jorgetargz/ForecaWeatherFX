@@ -21,35 +21,41 @@ public class PantallaHourlyViewModel {
     @Inject
     public PantallaHourlyViewModel(ServiceForecast scForecast) {
         this.scForecast = scForecast;
-        state = new SimpleObjectProperty<>(new PantallaHourlyState(null, false));
+        state = new SimpleObjectProperty<>(new PantallaHourlyState(null, false, false));
         observableForecast = FXCollections.observableArrayList();
-    }
-
-    public ObservableList<ForecastHourlyItem> getForecast() {
-        return FXCollections.unmodifiableObservableList(observableForecast);
-    }
-
-    public void loadForecast(int locationId) {
-        Either<String, List<ForecastHourlyItem>> eitherForecasts = scForecast.getHourlyForecast(1, locationId);
-        if (eitherForecasts.isRight()) {
-            List<ForecastHourlyItem> listForecast = eitherForecasts.get();
-            if (listForecast.isEmpty()) {
-                state.set(new PantallaHourlyState(ConstantesPantallas.NO_HAY_RESULTADOS, false));
-            } else {
-                observableForecast.clear();
-                observableForecast.setAll(listForecast);
-            }
-        } else {
-            state.setValue(new PantallaHourlyState(eitherForecasts.getLeft(), false));
-        }
     }
 
     public ObjectProperty<PantallaHourlyState> getState() {
         return state;
     }
 
+    public ObservableList<ForecastHourlyItem> getObservableForecast() {
+        return FXCollections.unmodifiableObservableList(observableForecast);
+    }
+
+    public Either<String, List<ForecastHourlyItem>> getForecast(int locationId) {
+        return scForecast.getHourlyForecast(3, locationId);
+    }
+
+    public void loadForecast(List<ForecastHourlyItem> forecast) {
+        observableForecast.clear();
+        observableForecast.setAll(forecast);
+    }
+
+    public void clearState() {
+        state.set(new PantallaHourlyState(null, false, false));
+    }
+
+
+    public void showHourlyDetail(ForecastHourlyItem forecastHourlyItem) {
+        if (forecastHourlyItem != null) {
+            state.set(new PantallaHourlyState(ConstantesPantallas.SELECCIONA_UN_REGISTRO_PRIMERO, false, false));
+        }
+        state.set(new PantallaHourlyState(null, false, true));
+    }
+
     public void onGoBack() {
-        state.set(new PantallaHourlyState(null, true));
+        state.set(new PantallaHourlyState(null, true, false));
     }
 }
 

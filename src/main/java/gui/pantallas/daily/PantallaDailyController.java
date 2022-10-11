@@ -5,7 +5,9 @@ import domain.modelo.LocationItem;
 import gui.pantallas.common.BasePantallaController;
 import gui.pantallas.common.ConstantesPantallas;
 import jakarta.inject.Inject;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -63,8 +65,18 @@ public class PantallaDailyController extends BasePantallaController {
             if (newState.error() != null) {
                 this.getPrincipalController().showAlert(Alert.AlertType.ERROR, ConstantesPantallas.ERROR, newState.error());
             }
+            if (newState.onShowDetail()) {
+                ForecastDailyItem forecastItem = tableForecastDaily.getSelectionModel().getSelectedItem();
+                this.getPrincipalController().showAlert(Alert.AlertType.INFORMATION, ConstantesPantallas.DETAIL, forecastItem.toString());
+            }
             if (newState.onGoBack()) {
                 this.getPrincipalController().goLocationScreen();
+            }
+            if (newState.isLoading()) {
+                this.getPrincipalController().root.setCursor(Cursor.WAIT);
+            }
+            if (newState.isLoaded()) {
+                this.getPrincipalController().root.setCursor(Cursor.DEFAULT);
             }
         });
     }
@@ -81,4 +93,10 @@ public class PantallaDailyController extends BasePantallaController {
         dailyViewModel.onGoBack();
     }
 
+    @FXML
+    private void onShowDetail() {
+        ForecastDailyItem forecastDailyItem = tableForecastDaily.getSelectionModel().getSelectedItem();
+            dailyViewModel.onShowDetail(forecastDailyItem);
+        dailyViewModel.clearState();
+    }
 }

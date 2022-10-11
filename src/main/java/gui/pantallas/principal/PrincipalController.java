@@ -1,6 +1,5 @@
 package gui.pantallas.principal;
 
-
 import domain.modelo.LocationItem;
 import gui.pantallas.common.BasePantallaController;
 import gui.pantallas.common.ConstantesPantallas;
@@ -38,7 +37,7 @@ public class PrincipalController {
     private double yOffset;
 
     @FXML
-    private BorderPane root;
+    public BorderPane root;
     @FXML
     private HBox windowHeader;
     @FXML

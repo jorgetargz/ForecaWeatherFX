@@ -4,6 +4,7 @@ import dao.common.Constantes;
 import dao.foreca_api.modelo.ResponseForecastDaily;
 import dao.foreca_api.modelo.ResponseForecastHourly;
 import dao.foreca_api.modelo.ResponseLocationSearch;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -18,6 +19,6 @@ public interface ForecaAPI {
     Call<ResponseForecastHourly> getHourlyForecast(@Path(Constantes.PERIOD) String period, @Path(Constantes.LOCATION_ID) int locationId);
 
     @GET(Constantes.FORECAST_DAYLY_ENDPOINT)
-    Call<ResponseForecastDaily> getDailyForecast(@Path(Constantes.LOCATION_ID) int locationId);
+    Single<ResponseForecastDaily> getDailyForecast(@Path(Constantes.LOCATION_ID) int locationId);
 
 }

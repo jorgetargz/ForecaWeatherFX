@@ -2,6 +2,11 @@ package gui.pantallas.common;
 
 public class ConstantesPantallas {
 
+    public static final String INFO = "Info";
+    public static final String NO_HAY_DATOS = "No hay datos";
+    public static final String DETAIL = "Detail";
+    public static final String SELECCIONA_UN_REGISTRO_PRIMERO = "Selecciona un registro primero";
+
     private ConstantesPantallas() {
     }
 

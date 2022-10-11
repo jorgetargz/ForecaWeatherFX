@@ -5,9 +5,12 @@ import gui.pantallas.common.BasePantallaController;
 import gui.pantallas.common.ConstantesPantallas;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -19,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
+import java.util.List;
 
 @Log4j2
 public class PantallaWelcomeController extends BasePantallaController {
@@ -77,7 +81,7 @@ public class PantallaWelcomeController extends BasePantallaController {
     }
 
     @FXML
-    private void updateFields(MouseEvent mouseEvent) {
+    private void updateFields() {
         LocationItem location = tableLocations.getSelectionModel().getSelectedItem();
         if (location != null) {
             btnSelect.setVisible(true);
@@ -86,18 +90,40 @@ public class PantallaWelcomeController extends BasePantallaController {
     }
 
     @FXML
-    private void onLocationSearch(ActionEvent actionEvent) {
-        String name = txtLocationName.getText();
-        welcomeViewModel.searchLocation(name);
-        welcomeViewModel.clearState();
-    }
-
-    @FXML
-    private void onLocationSelected(ActionEvent actionEvent) {
+    private void onLocationSelected() {
         LocationItem location = tableLocations.getSelectionModel().getSelectedItem();
         if (location != null) {
             welcomeViewModel.onLocationSelected();
         }
+    }
+
+    @FXML
+    private void onLocationSearch() {
+        getPrincipalController().root.setCursor(Cursor.WAIT);
+        var task = new Task<Either<String, List<LocationItem>>>() {
+            @Override
+            protected Either<String, List<LocationItem>> call() {
+                String name = txtLocationName.getText();
+                return welcomeViewModel.getLocations(name);
+            }
+        };
+        task.setOnSucceeded(workerStateEvent -> {
+            getPrincipalController().root.setCursor(Cursor.DEFAULT);
+            var result = task.getValue();
+            result.peek(locationItems -> {
+                if (locationItems.isEmpty()) {
+                    getPrincipalController().showAlert(Alert.AlertType.INFORMATION, ConstantesPantallas.INFO, ConstantesPantallas.NO_HAY_RESULTADOS);
+                } else {
+                    welcomeViewModel.loadLocations(locationItems);
+                }
+            }).peekLeft(error -> getPrincipalController().showAlert(Alert.AlertType.ERROR, error, error));
+        });
+        task.setOnFailed(workerStateEvent -> {
+            getPrincipalController().showAlert(Alert.AlertType.ERROR, ConstantesPantallas.ERROR, task.getException().getMessage());
+            getPrincipalController().root.setCursor(Cursor.DEFAULT);
+        });
+        new Thread(task).start();
+        welcomeViewModel.clearState();
     }
 
 }

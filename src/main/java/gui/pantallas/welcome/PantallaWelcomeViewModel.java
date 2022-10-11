@@ -2,7 +2,6 @@ package gui.pantallas.welcome;
 
 import domain.modelo.LocationItem;
 import domain.services.ServicesLocations;
-import gui.pantallas.common.ConstantesPantallas;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.ObjectProperty;
@@ -34,20 +33,8 @@ public class PantallaWelcomeViewModel {
         return FXCollections.unmodifiableObservableList(observableLocations);
     }
 
-    public void searchLocation(String name) {
-        Either<String, List<LocationItem>> eitherLocations = scLocations.searchLocations(name);
-        if (eitherLocations.isRight()) {
-            List<LocationItem> listLocations = eitherLocations.get();
-            if (listLocations.isEmpty()) {
-                state.set(new PantallaWelcomeState(ConstantesPantallas.NO_HAY_RESULTADOS, false));
-            } else {
-                observableLocations.clear();
-                observableLocations.setAll(listLocations);
-            }
-        } else {
-            state.setValue(new PantallaWelcomeState(eitherLocations.getLeft(), false));
-        }
-
+    public Either<String, List<LocationItem>> getLocations(String name) {
+        return scLocations.searchLocations(name);
     }
 
     public void onLocationSelected() {
@@ -56,5 +43,10 @@ public class PantallaWelcomeViewModel {
 
     public void clearState() {
         state.set(new PantallaWelcomeState(null, false));
+    }
+
+    public void loadLocations(List<LocationItem> locations) {
+        observableLocations.clear();
+        observableLocations.setAll(locations);
     }
 }
